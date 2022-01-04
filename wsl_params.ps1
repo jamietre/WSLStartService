@@ -1,10 +1,11 @@
 # Set Parameters
 $Params = @{
 
-  Distro    = 'Arch'
+  Distro    = 'Ubuntu-20.04'
   StopWSL   = 'wsl.exe --distribution $($Params.Distro) --shutdown'
   GetWSLVer = '$(wsl.exe --distribution $($Params.Distro) --list --all --verbose)'
-  GetIPCmd  = '$(wsl.exe --distribution $($Params.Distro) ip route get 1.1.1.1 | grep -oP "src \K\S+")'
+  # GetIPCmd  = '$(wsl.exe --distribution $($Params.Distro) ip route get 1.1.1.1 | grep -oP "src \K\S+")'
+  GetIPCmd = '$(wsl hostname -I)'
   # Services  = ('sudo systemctl restart sshd; netstat -an | grep -ai list | grep -ai 11098')
   Services  = ('sudo systemctl restart sshd; netstat -an | findstr -i list | findstr -i $Port')
   Ports = @{
